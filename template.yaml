@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: BYOL challenge — Spring Boot on Lambda (your job to fill in the gaps)
 
@@ -25,7 +25,7 @@ Description: BYOL challenge — Spring Boot on Lambda (your job to fill in the g
 Globals:
   Function:
     Timeout: 30
-    MemorySize: 1024              # Java is heavy — 1024+ MB is mandatory for sane cold start
+    MemorySize: 1024 # Java is heavy — 1024+ MB is mandatory for sane cold start
     Runtime: java21
     Architectures:
       - arm64
@@ -39,7 +39,7 @@ Resources:
       # TODO: pick the Handler value matching your strategy.
       #   aws-serverless-java-container → "dev.byol.lambda.<YourClass>::handleRequest"
       #   Web Adapter                   → "run.sh" (with executable bit + run.sh in src/main/resources)
-      Handler: TODO_FILL_IN
+      Handler: dev.byol.lambda.StreamLambdaHandler::handleRequest
       Tracing: Active
       # ────────── BONUS B: enable SnapStart to cut cold start to 200-500 ms ──────────
       # AutoPublishAlias: live
@@ -61,16 +61,16 @@ Resources:
             ApiId: !Ref SpringBootHttpApi
             Path: /{proxy+}
             Method: ANY
-            PayloadFormatVersion: '2.0'
+            PayloadFormatVersion: "2.0"
         ApiRoot:
           Type: HttpApi
           Properties:
             ApiId: !Ref SpringBootHttpApi
             Path: /
             Method: ANY
-            PayloadFormatVersion: '2.0'
+            PayloadFormatVersion: "2.0"
     Metadata:
-      BuildMethod: maven          # SAM runs `mvn package` and picks up target/*.jar
+      BuildMethod: maven # SAM runs `mvn package` and picks up target/*.jar
 
   SpringBootHttpApi:
     Type: AWS::Serverless::HttpApi
