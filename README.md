@@ -4,6 +4,10 @@ This is a plain Spring Boot 3 app. It runs locally as a normal Tomcat-backed
 HTTP server. **It does not run on Lambda yet.** Your group's job is to make
 it run on Lambda with the **minimum** code/config changes.
 
+
+<img width="1280" height="617" alt="lambda+API" src="https://github.com/user-attachments/assets/cfa98a46-caa9-4459-a273-b7c0ca95e3a3" />
+
+
 ```
 java-spring-boot/
 ├── src/main/java/dev/byol/
